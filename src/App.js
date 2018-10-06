@@ -3,13 +3,6 @@ import './tacit-css.min.css'
 import './App.css'
 
 class App extends Component {
-  createOptions = () => {
-    const options = []
-    for (let i = 0; i < 20; i++) {
-      options.push(`<option>${i}</option>`)
-    }
-    return options
-  }
   render() {
     return (
       <div>
@@ -45,6 +38,10 @@ class App extends Component {
                 Array(21).fill().map((_, i) => <option>{i}</option>)
               }
             </select>
+          </div>
+          <div>
+            Notas {' '}
+            <input className='notes' type='text' />
           </div>
           <input type="submit" value="Enviar" />
         </form>
