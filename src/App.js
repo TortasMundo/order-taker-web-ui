@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './tacit-css.min.css'
 import './App.css'
 import * as orderService from './services/orders'
@@ -17,13 +17,23 @@ class App extends Component {
   }
 
   changeOrder = item => event => {
-    this.setState({[item]: event.target.value})
+    this.setState({ [item]: event.target.value })
   }
 
   place = async () => {
-    const result = await orderService.placeOrder(this.jamon, this.lomo, this.especial, this.refrescos, this.notes)
+    const result = await orderService.placeOrder(
+      this.state.jamon,
+      this.state.lomo,
+      this.state.especial,
+      this.state.refrescos,
+      this.state.notes,
+    )
+    debugger
     if (result.success) {
-      this.state = this.initialState
+      this.setState({
+        ...this.initialState
+      })
+      alert('La orden fue creada correctamente.')
     }
   }
 
@@ -72,9 +82,9 @@ class App extends Component {
             </select>
           </div>
           <div>
-            Notas <input className="notes" type="text" onChange={this.changeOrder('notes')}/>
+            Notas <input className="notes" type="text" onChange={this.changeOrder('notes')} />
           </div>
-          <input type="submit" value="Enviar" onClick={this.place}/>
+          <button type="button" onClick={this.place}>Enviar</button>
         </form>
       </div>
     )
