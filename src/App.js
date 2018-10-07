@@ -34,6 +34,8 @@ class App extends Component {
         ...this.initialState
       })
       alert('La orden fue creada correctamente.')
+    } else {
+      alert(result.error)
     }
   }
 
