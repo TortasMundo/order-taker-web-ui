@@ -43,7 +43,7 @@ class App extends Component {
         <form>
           <div>
             Jamón{' '}
-            <select onChange={this.changeOrder('jamon')}>
+            <select onChange={this.changeOrder('jamon')} value={this.state.jamon}>
               {Array(21)
                 .fill()
                 .map((_, i) => (
@@ -53,7 +53,7 @@ class App extends Component {
           </div>
           <div>
             Lomo{' '}
-            <select onChange={this.changeOrder('lomo')}>
+            <select onChange={this.changeOrder('lomo')} value={this.state.lomo}>
               {Array(21)
                 .fill()
                 .map((_, i) => (
@@ -63,7 +63,7 @@ class App extends Component {
           </div>
           <div>
             Especial{' '}
-            <select onChange={this.changeOrder('especial')}>
+            <select onChange={this.changeOrder('especial')} value={this.state.especial}>
               {Array(21)
                 .fill()
                 .map((_, i) => (
@@ -73,7 +73,7 @@ class App extends Component {
           </div>
           <div>
             Refrescos{' '}
-            <select onChange={this.changeOrder('refrescos')}>
+            <select onChange={this.changeOrder('refrescos')} value={this.state.refrescos}>
               {Array(21)
                 .fill()
                 .map((_, i) => (
@@ -82,7 +82,7 @@ class App extends Component {
             </select>
           </div>
           <div>
-            Notas <input className="notes" type="text" onChange={this.changeOrder('notes')} />
+            Notas <input className="notes" type="text" onChange={this.changeOrder('notes')} value={this.state.notes}/>
           </div>
           <button type="button" onClick={this.place}>Enviar</button>
         </form>
