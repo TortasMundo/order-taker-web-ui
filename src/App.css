@@ -1,3 +1,18 @@
 .notes {
     width: 30em;
 }
+
+button {
+    background-color: #1b85db;
+    color: white;
+}
+
+button:hover {
+    background-color: #145a93;
+    color: white;
+}
+
+button:active {
+    background-color: #0e416b;
+    color: white;
+}

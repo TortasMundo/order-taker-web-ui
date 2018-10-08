@@ -12,6 +12,7 @@ class App extends Component {
       especial: '0',
       refrescos: '0',
       notes: '',
+      sending: false
     }
     this.state = this.initialState
   }
@@ -21,6 +22,7 @@ class App extends Component {
   }
 
   place = async () => {
+    this.setState({sending: true})
     const result = await orderService.placeOrder(
       this.state.jamon,
       this.state.lomo,
@@ -28,7 +30,7 @@ class App extends Component {
       this.state.refrescos,
       this.state.notes,
     )
-    debugger
+    this.setState({sending: false})
     if (result.success) {
       this.setState({
         ...this.initialState
@@ -86,7 +88,7 @@ class App extends Component {
           <div>
             Notas <input className="notes" type="text" onChange={this.changeOrder('notes')} value={this.state.notes}/>
           </div>
-          <button type="button" onClick={this.place}>Enviar</button>
+          <button type="button" onClick={this.place} disabled={this.state.sending}>Enviar</button>
         </form>
       </div>
     )
