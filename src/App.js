@@ -12,7 +12,7 @@ class App extends Component {
       especial: '0',
       refrescos: '0',
       notes: '',
-      sending: false
+      idle: true
     }
     this.state = this.initialState
   }
@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   place = async () => {
-    this.setState({sending: true})
+    this.setState({idle: false})
     const result = await orderService.placeOrder(
       this.state.jamon,
       this.state.lomo,
@@ -30,7 +30,7 @@ class App extends Component {
       this.state.refrescos,
       this.state.notes,
     )
-    this.setState({sending: false})
+    this.setState({idle: true})
     if (result.success) {
       this.setState({
         ...this.initialState
@@ -89,6 +89,11 @@ class App extends Component {
             Notas <input className="notes" type="text" onChange={this.changeOrder('notes')} value={this.state.notes}/>
           </div>
           <button type="button" onClick={this.place} disabled={this.state.sending}>Enviar</button>
+          <div className="spinner" hidden={this.state.idle}>
+            <div className="bounce1"></div>
+            <div className="bounce2"></div>
+            <div className="bounce3"></div>
+          </div>
         </form>
       </div>
     )
