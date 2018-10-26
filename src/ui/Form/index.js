@@ -48,11 +48,6 @@ export const Form = (props) => {
         Notas <input className="notes" type="text" onChange={props.changeQuantity('notes')} value={props.notes}/>
       </div>
       <button type="button" onClick={props.place} disabled={props.sending}>Enviar</button>
-      <div className="spinner" hidden={props.idle}>
-        <div className="bounce1"></div>
-        <div className="bounce2"></div>
-        <div className="bounce3"></div>
-      </div>
     </form>
   </div>)
 }
