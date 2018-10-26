@@ -3,6 +3,7 @@ import './tacit-css.min.css'
 import './App.css'
 import * as orderService from './services/orders'
 import { Form } from './ui/Form'
+import { Table } from './ui/Table'
 
 class App extends Component {
   constructor(props) {
@@ -62,31 +63,7 @@ class App extends Component {
     return (
       <div>
         <Form changeQuantity={this.changeQuantity} place={this.place} {...this.state} />
-        <table>
-          <thead>
-          <tr>
-            <th>#</th>
-            <th>Jamon</th>
-            <th>Lomo</th>
-            <th>Especial</th>
-            <th>Refrescos</th>
-            <th>Notas</th>
-          </tr>
-          </thead>
-          <tbody>
-          {this.state.orders.map((order, index) => {
-            return (<tr>
-              <td>{this.state.orders.length - index}</td>
-              <td>{order.jamon_quantity}</td>
-              <td>{order.lomo_quantity}</td>
-              <td>{order.especial_quantity}</td>
-              <td>{order.refrescos_quantity}</td>
-              <td>{order.notes}</td>
-            </tr>)
-          })}
-          </tbody>
-        </table>
-
+        <Table orders={this.state.orders}/>
       </div>
     )
   }
