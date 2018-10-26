@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './tacit-css.min.css'
 import './App.css'
 import * as orderService from './services/orders'
+import { Form } from './ui/Form'
 
 class App extends Component {
   constructor(props) {
@@ -12,17 +13,17 @@ class App extends Component {
       especial: '0',
       refrescos: '0',
       notes: '',
-      idle: true
+      idle: true,
     }
     this.state = this.initialState
   }
 
-  changeOrder = item => event => {
+  changeQuantity = item => event => {
     this.setState({ [item]: event.target.value })
   }
 
   place = async () => {
-    this.setState({idle: false})
+    this.setState({ idle: false })
     const result = await orderService.placeOrder(
       this.state.jamon,
       this.state.lomo,
@@ -30,10 +31,10 @@ class App extends Component {
       this.state.refrescos,
       this.state.notes,
     )
-    this.setState({idle: true})
+    this.setState({ idle: true })
     if (result.success) {
       this.setState({
-        ...this.initialState
+        ...this.initialState,
       })
       alert('La orden fue creada correctamente.')
     } else {
@@ -43,59 +44,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <form>
-          <div>
-            Jamón{' '}
-            <select onChange={this.changeOrder('jamon')} value={this.state.jamon}>
-              {Array(21)
-                .fill()
-                .map((_, i) => (
-                  <option key={i}>{i}</option>
-                ))}
-            </select>
-          </div>
-          <div>
-            Lomo{' '}
-            <select onChange={this.changeOrder('lomo')} value={this.state.lomo}>
-              {Array(21)
-                .fill()
-                .map((_, i) => (
-                  <option key={i}>{i}</option>
-                ))}
-            </select>
-          </div>
-          <div>
-            Especial{' '}
-            <select onChange={this.changeOrder('especial')} value={this.state.especial}>
-              {Array(21)
-                .fill()
-                .map((_, i) => (
-                  <option key={i}>{i}</option>
-                ))}
-            </select>
-          </div>
-          <div>
-            Refrescos{' '}
-            <select onChange={this.changeOrder('refrescos')} value={this.state.refrescos}>
-              {Array(21)
-                .fill()
-                .map((_, i) => (
-                  <option key={i}>{i}</option>
-                ))}
-            </select>
-          </div>
-          <div>
-            Notas <input className="notes" type="text" onChange={this.changeOrder('notes')} value={this.state.notes}/>
-          </div>
-          <button type="button" onClick={this.place} disabled={this.state.sending}>Enviar</button>
-          <div className="spinner" hidden={this.state.idle}>
-            <div className="bounce1"></div>
-            <div className="bounce2"></div>
-            <div className="bounce3"></div>
-          </div>
-        </form>
-      </div>
+      <Form changeQuantity={this.changeQuantity} place={this.place} {...this.state} />
     )
   }
 }
