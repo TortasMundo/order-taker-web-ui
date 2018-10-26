@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './tacit-css.min.css'
-import './App.css'
 import * as orderService from './services/orders'
 import { Form } from './ui/Form'
 import { Table } from './ui/Table'

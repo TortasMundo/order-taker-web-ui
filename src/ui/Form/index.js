@@ -2,7 +2,7 @@ import React from 'react'
 import { styles } from './styles'
 
 export const Form = (props) => {
-  return ( <div>
+  return ( <div style={styles.container}>
     <form>
       <div>
         Jamón{' '}
@@ -45,9 +45,9 @@ export const Form = (props) => {
         </select>
       </div>
       <div>
-        Notas <input className="notes" type="text" onChange={props.changeQuantity('notes')} value={props.notes}/>
+        Notas <input style={styles.notes} type="text" onChange={props.changeQuantity('notes')} value={props.notes}/>
       </div>
-      <button type="button" onClick={props.place} disabled={props.sending}>Enviar</button>
+      <button style={styles.button} type="button" onClick={props.place} disabled={props.sending}>Enviar</button>
     </form>
   </div>)
 }
