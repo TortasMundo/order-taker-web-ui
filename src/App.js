@@ -15,7 +15,22 @@ class App extends Component {
       notes: '',
       idle: true,
     }
-    this.state = this.initialState
+    this.state = {
+      ...this.initialState,
+      orders: []
+    }
+  }
+
+  async componentDidMount() {
+    await this.getOrders()
+  }
+
+  getOrders = async () => {
+    const response = await orderService.listOrders()
+    if (response && response.data && response.data.length) {
+      response.data.reverse()
+      this.setState({ orders: response.data })
+    }
   }
 
   changeQuantity = item => event => {
@@ -31,6 +46,7 @@ class App extends Component {
       this.state.refrescos,
       this.state.notes,
     )
+    await this.getOrders()
     this.setState({ idle: true })
     if (result.success) {
       this.setState({
@@ -44,7 +60,34 @@ class App extends Component {
 
   render() {
     return (
-      <Form changeQuantity={this.changeQuantity} place={this.place} {...this.state} />
+      <div>
+        <Form changeQuantity={this.changeQuantity} place={this.place} {...this.state} />
+        <table>
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Jamon</th>
+            <th>Lomo</th>
+            <th>Especial</th>
+            <th>Refrescos</th>
+            <th>Notas</th>
+          </tr>
+          </thead>
+          <tbody>
+          {this.state.orders.map((order, index) => {
+            return (<tr>
+              <td>{this.state.orders.length - index}</td>
+              <td>{order.jamon_quantity}</td>
+              <td>{order.lomo_quantity}</td>
+              <td>{order.especial_quantity}</td>
+              <td>{order.refrescos_quantity}</td>
+              <td>{order.notes}</td>
+            </tr>)
+          })}
+          </tbody>
+        </table>
+
+      </div>
     )
   }
 }
