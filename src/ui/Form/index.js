@@ -1,5 +1,6 @@
 import React from 'react'
 import { styles } from './styles'
+import Radium from 'radium'
 
 export const Form = (props) => {
   return ( <div style={styles.container}>
@@ -47,7 +48,7 @@ export const Form = (props) => {
       <div>
         Notas <input style={styles.notes} type="text" onChange={props.changeQuantity('notes')} value={props.notes}/>
       </div>
-      <button style={styles.button} type="button" onClick={props.place} disabled={props.sending}>Enviar</button>
+      <button style={styles.button} type="button" onClick={props.place} disabled={props.idle === false}>Enviar</button>
     </form>
   </div>)
 }
