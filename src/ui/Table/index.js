@@ -12,7 +12,6 @@ export const Table = (props) => {
         <th>Lomo</th>
         <th>Especial</th>
         <th>Refrescos</th>
-        <th>Status</th>
         <th>Notas</th>
         <th></th>
       </tr>
@@ -28,7 +27,6 @@ export const Table = (props) => {
           <td>{order.lomo_quantity}</td>
           <td>{order.especial_quantity}</td>
           <td>{order.refrescos_quantity}</td>
-          <td>{order.status}</td>
           <td>{order.notes}</td>
           <td>{}</td>
         </tr>)
