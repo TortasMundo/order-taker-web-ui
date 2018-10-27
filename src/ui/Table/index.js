@@ -1,5 +1,5 @@
 import React from 'react'
-import { EditableRow} from './components/EditableRow'
+import EditableRow from './components/EditableRow'
 import { styles } from './styles'
 
 export const Table = (props) => {
