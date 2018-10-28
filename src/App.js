@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div>
         <Form getOrders={this.getOrders}/>
-        <Table orders={this.state.orders}/>
+        <Table orders={this.state.orders} getOrders={this.getOrders}/>
       </div>
     )
   }

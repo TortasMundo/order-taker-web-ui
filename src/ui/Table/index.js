@@ -19,7 +19,7 @@ export const Table = (props) => {
       <tbody>
       {props.orders.map((order, index) => {
         if (order.status === 'ORDERED') {
-         return <EditableRow order={order} index={props.orders.length - index}/>
+         return <EditableRow order={order} index={props.orders.length - index} getOrders={props.getOrders}/>
         }
         return (<tr>
           <td>{props.orders.length - index}</td>

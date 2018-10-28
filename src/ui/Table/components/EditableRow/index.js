@@ -23,6 +23,7 @@ class EditableRow extends Component {
       this.state.newEspecial,
       this.state.newRefrescos,
       this.state.newNotes)
+    await this.props.getOrders()
     if (result.success) {
       alert('La orden fue actualizada correctamente.')
     } else {
