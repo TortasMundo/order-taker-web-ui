@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { styles } from './styles'
 import { QuantityOptions } from '../../../components/QuantityOptions'
+import * as orderService from '../../../../services/orders'
 
 class EditableRow extends Component {
   constructor(props) {
@@ -10,7 +11,22 @@ class EditableRow extends Component {
       newLomo: props.order.lomo_quantity,
       newEspecial: props.order.especial_quantity,
       newRefrescos: props.order.refrescos_quantity,
-      notes: this.props.order.notes,
+      newNotes: this.props.order.notes,
+    }
+  }
+
+  update = async () => {
+    const result = await orderService.updateOrder(
+      this.props.order.code,
+      this.state.newJamon,
+      this.state.newLomo,
+      this.state.newEspecial,
+      this.state.newRefrescos,
+      this.state.newNotes)
+    if (result.success) {
+      alert('La orden fue actualizada correctamente.')
+    } else {
+      alert(result.error)
     }
   }
 
@@ -34,9 +50,9 @@ class EditableRow extends Component {
         <td><select onChange={this.changeQuantity('newRefrescos')} value={this.state.newRefrescos}>
           <QuantityOptions/>
         </select></td>
-        <td><input value={this.state.notes} style={styles.notes}/></td>
+        <td><input onChange={this.changeQuantity('newNotes')} value={this.state.newNotes} style={styles.notes}/></td>
         <td>
-          <button>Actualizar</button>
+          <button type="button" onClick={this.update}>Actualizar</button>
         </td>
       </tr>)
     )
