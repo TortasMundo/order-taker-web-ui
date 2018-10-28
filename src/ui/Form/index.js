@@ -23,7 +23,6 @@ class Form extends Component {
   }
 
   place = async () => {
-    this.setState({ idle: false })
     const result = await orderService.placeOrder(
       this.state.jamon,
       this.state.lomo,
@@ -31,8 +30,6 @@ class Form extends Component {
       this.state.refrescos,
       this.state.notes,
     )
-    await this.props.getOrders()
-    this.setState({ idle: true })
     if (result.success) {
       this.setState({
         ...this.initialState,
@@ -41,6 +38,7 @@ class Form extends Component {
     } else {
       alert(result.error)
     }
+    await this.props.getOrders()
   }
 
   changeQuantity = item => event => {
