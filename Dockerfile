@@ -2,9 +2,13 @@ FROM node:10.12
 
 COPY . .
 
-RUN npm run build --production
+RUN npm i -g yarn
 
-RUN npm install -g serve
+RUN yarn install
+
+RUN yarn run build --production
+
+RUN yarn global add serve
 
 CMD serve -s build -p 3001
 
