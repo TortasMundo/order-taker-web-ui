@@ -1,0 +1,6 @@
+[
+  {
+    "name": "order-taker-web-ui",
+    "imageUri": "421154629972.dkr.ecr.us-east-2.amazonaws.com/tortasmundo/order-taker-web-ui:latest"
+  }
+]
