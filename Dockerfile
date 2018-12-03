@@ -10,6 +10,6 @@ RUN yarn run build --production
 
 RUN yarn global add serve
 
-CMD serve -s build -p 3001
+CMD serve -s build -p 60002
 
-EXPOSE 3001
+EXPOSE 60002
